@@ -41,7 +41,7 @@ const handleSubmit = (values)=>{
    }).then(res=>res.json()).then(result=>{console.log(result)
     if(result.status == 'ok')
     {
-        navigate('/login')
+        navigate('/')
     }
     else{
      console.log('error')
@@ -92,7 +92,7 @@ const handleSubmit = (values)=>{
            {touched.password && errors.password ? <div className='error' style={{  fontSize: 12, color: 'red',textTransform:"lowercase" }}> {errors.password}</div> : null}
                             
                             
-          <button type="submit" style={{marginLeft:'10%'}}onClick={handleSubmit} >SIGNUP</button>
+          <button type="submit" onClick={handleSubmit} >SIGNUP</button>
           <span>Don't have an account? <Link to='/login'>SignIn</Link></span>
            </form>
           

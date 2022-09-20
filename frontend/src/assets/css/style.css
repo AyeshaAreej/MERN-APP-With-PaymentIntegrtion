@@ -1,0 +1,140 @@
+
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+
+
+}
+
+html {
+  font-size: 75%;
+  overflow-x: hidden;
+  /* scroll-padding-top: 7rem; */
+  scroll-behavior: smooth;
+}
+
+
+
+body {
+  background: #fff;
+}
+
+section {
+  padding: 2rem 9%;
+}
+
+.heading {
+  text-align: center;
+  padding-bottom: 2rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 3rem;
+}
+
+
+
+.btn {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.8rem 3rem;
+  font-size: 1.7rem;
+  border-radius: 0.5rem;
+  background: #666;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+
+
+
+.service .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  /* grid-template-columns: 600px 600px 600px 600px; */
+  gap: 1.5rem;
+}
+
+.service .box-container .box {
+  border-radius: 0.5rem;
+  background: #ac7494;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.service .box-container .box i {
+  height: 6rem;
+  width: 6rem;
+  line-height: 6rem;
+  border-radius: 50%;
+  font-size: 2rem;
+  background: #ecd1c4;
+  color: #fff;
+}
+
+.service .box-container .box h3 {
+  font-size: 2rem;
+  color: #fff;
+  padding: 1rem 0;
+}
+
+.service .box-container .box p {
+  font-size: 1.1rem;
+  color: #eee;
+  line-height: 1.8;
+}
+
+
+.footer {
+  background: #a6678b;
+}
+
+.footer .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 1.5rem;
+}
+
+.footer .box-container .box h3 {
+  font-size: 2.5rem;
+  padding: 1rem 0;
+  color: #fff;
+}
+
+.footer .box-container .box a {
+  display: block;
+  font-size: 1.5rem;
+  padding: 1rem 0;
+  color: #eee;
+}
+
+.footer .box-container .box a i {
+  padding-right: 0.5rem;
+  color: var(--main-color);
+}
+
+.footer .box-container .box a:hover i {
+  padding-right: 1.5rem;
+  color: #fff;
+}
+
+.footer .credit {
+  text-align: center;
+  border-top: 0.1rem solid #222;
+  color: #fff;
+  padding: 2rem;
+  padding-top: 2.5rem;
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+
+.footer .credit span {
+  color: var(--main-color);
+}
+
+

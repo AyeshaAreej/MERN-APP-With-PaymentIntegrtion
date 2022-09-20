@@ -36,7 +36,7 @@ const handleSubmit = (values)=>{
     {
         localStorage.setItem('user-token',JSON.stringify(result.token))
         console.log("done")
-        navigate('/')
+        navigate('/home')
     }
     else{
      console.log('error')
@@ -45,7 +45,7 @@ const handleSubmit = (values)=>{
   
 };
  return (
-    <>
+  
   <StyledContainer>
      <div className='brandName'> 
        <img src={logo} alt=''/>
@@ -80,14 +80,14 @@ const handleSubmit = (values)=>{
            {touched.password && errors.password ? <div className='error' style={{  fontSize: 12, color: 'red',textTransform:"lowercase" }}> {errors.password}</div> : null}
                             
                             
-          <button type="submit" style={{marginLeft:'10%'}}onClick={handleSubmit} >SIGNIN</button>
+          <button type="submit" onClick={handleSubmit} >SIGNIN</button>
           <span>Don't have an account? <Link to='/register'>SignUp</Link></span>
            </form>
           
            )}
            </Formik>  
     </StyledContainer>
- </>
+
   )
 }
 
