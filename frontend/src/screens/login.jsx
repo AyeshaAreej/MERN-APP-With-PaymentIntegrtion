@@ -111,6 +111,8 @@ background-color:white;
   h1 {
     color: #C36B84;
     text-transform: uppercase;
+  
+
   }
 }
 .heading {

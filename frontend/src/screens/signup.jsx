@@ -93,7 +93,7 @@ const handleSubmit = (values)=>{
                             
                             
           <button type="submit" onClick={handleSubmit} >SIGNUP</button>
-          <span>Don't have an account? <Link to='/login'>SignIn</Link></span>
+          <span>Already have an account? <Link to='/'>SignIn</Link></span>
            </form>
           
            )}
