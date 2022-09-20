@@ -9,73 +9,69 @@ const signupPage = (req,res)=>{
 }
 
 
-//JWT authentication
+
+// JWT authentication
 const createUser = async (req,res)=>{
-    const { username, password: plainTextPassword } = req.body
-    if (!username || typeof username !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid username' })
-	}
-    if (!plainTextPassword || typeof plainTextPassword !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid password' })
-	}
 
-    const password = await bcrypt.hash(plainTextPassword, 10)
-
-
-
-    try{
-    const response= await User.create({
-        username,
-        password
+    const {password : orignalPassword} = req.body
+    
+    if(orignalPassword.length<5){
+        return res.json({
+            status:'error',
+            error: 'Password should be atleast 5 characters'
+        })}
+    
+    const password = await bcrypt.hash(orignalPassword,10)
+    
+    await User.create({
+            username: req.body.username,
+            password: password,
+            
         },
         (err,user)=>{
-        if (err) {
-            console.log('error in signup')
-            return res.redirect('/');
-          }
-          return res.render('loginPage')
-    })
-    console.log('User created successfully: ', response)
-  
-} catch (error) {
-    if (error.code === 11000) {
-        // duplicate key
-        return res.json({ status: 'error', error: 'Username already in use' })
+            if(err){
+                console.log('error in signup')
+                return res.json({status: 'error',error: 'error in signup'})
+            }
+           
+           return res.json({status: 'ok', user})
+        })
     }
-    throw error
-}
-return res.render('loginPage')
-// res.json({ status: 'ok' })
-}
+
 
 //login
-const validateUser = async (req,res)=>{
 
-    const {username,password}=req.query;
+
+const validateUser = async(req,res)=>{
+
+    const {username,password} = req.body
     console.log(username)
-    const user = await User.findOne({ username }).lean()
-     if (!user) {
-		return res.json({ status: 'error', error: 'Invalid username/password' })
-	}
+    
+    const user = await User.findOne({username}).lean()
 
-	if (await bcrypt.compare(password, user.password)) {
-		// the username, password combination is successful
-
-		const token = jwt.sign(
-			{
-				id: user._id,
-				username: user.username
-			},
-			JWT_SECRET,
-		)
-
-		// return res.json({ status: 'ok', data: token })
-        return  res.redirect('/home');
-
+    if(!user){
+        
+        return res.json({status:"error", error : 'Invalid username or password'})
+        
     }
 
-	res.json({ status: 'error', error: 'Invalid username/password' })
+    if(await bcrypt.compare(password,user.password)){
+        // the username, password combination is successful
+
+        const token = await jwt.sign({
+            id : user._id
+        },
+        JWT_SECRET
+        )
+        return res.json({status:"ok", token, user})
+    }
+
+    return res.json({status:"error", error : 'Invalid username/password'})
+
 }
+
+
+
 
 
 
