@@ -2,6 +2,8 @@ const User=require('../models/user')
 const bcrypt = require("bcrypt");
 const jwt=require('jsonwebtoken')
 const JWT_SECRET='sdjkfh8923yhjdksbfma@#*(&@*!^#&@bhjb2qiuhesdbhjdsfg839ujkdhfjksss'
+const Stripe= require('stripe')(process.env.SECRET_KEY);
+require('dotenv').config();
 
 
 const signupPage = (req,res)=>{
@@ -70,9 +72,22 @@ const validateUser = async(req,res)=>{
 
 }
 
+const paymentController= async (req,res)=>{
+    let status, error;
+    const { token, amount } = req.body;
+    try{
+        await Stripe.charges.create({
+            source:token.id,
+            amount,
+            currency:'usd',
+        });
+
+    } catch(error){
+        status='Failure';
+    }
+    res.json({error,status})
+}
 
 
 
-
-
-module.exports = {signupPage,createUser,validateUser}
+module.exports = {signupPage,createUser,validateUser,paymentController}

@@ -8,6 +8,7 @@ const route = express.Router()
 // route.get('/',userController.signupPage)
 route.post('/register',userController.createUser)
 route.post('/loginn',userController.validateUser);
+route.post('/payment',userController.paymentController )
 
 
 module.exports = route;
